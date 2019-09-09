@@ -126,7 +126,7 @@ void tcp_server_task(void *pvParameters)
                 //prints client source ip and http request packet to esp monitor
                 inet_ntoa_r(((struct sockaddr_in *)&sourceAddr)->sin_addr.s_addr, addr_str, sizeof(addr_str) - 1);
                 ESP_LOGI("---  ", "Received %d bytes from %s:", len, addr_str);
-                //ESP_LOGI("", "HTTP REQUEST Packet\n%s", rx_buffer);
+                ESP_LOGI("", "HTTP REQUEST Packet\n%s", rx_buffer);
 
                 //parse request type and arg 
                 char http_type[8];
