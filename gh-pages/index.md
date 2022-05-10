@@ -1,40 +1,12 @@
-<!DOCTYPE html>
-<html>
-   <head>
-      <title>Simple Web page</title>
-      <style>
-        h1 {color:Brown; text-align:center; }
-        p {color:SaddleBrown;}
-        img { position:absolute;top:20%;left:40%;  }
-        #intro { float:right;width:85%;margin-left:50px;margin-right:50px; 
-                 position:absolute;top:66%; font-size:small; }
-        #rside { position:absolute;top:100px;font-size:x-small; }
+   # Simple Web Page</h1>
 
-      </style>
-   </head>
-   <body>
-
-   <h1>Simple Web Page</h1>
-   <img src="./helloworld.png" style="width:55%;height:45%" ></img>
-   <div id="intro">
-      <p> 
-      This project sets up a
-      simple tcp socket with enough functionality to serve up a stand-alone
-      .html file (with some java script to handle parsing tcp headers) and
-      handle bi-directional data flow between the esp device and the browser.
-      This repository was tested on a ESP32-S and on a ESP8266 D1-mini with 
-      their respective tools packages and esp-idf frameworks. 
-      <p>
-      The tcp server in the esp takes the incoming IP packets combines, windows,
-      verifies/requests retransmission, and notifies us that an http request is
-      ready.  When I filled 192.168.0.120/index.html into my browser address bar
-      window the contents of the tcp server (running over in my esp running a wifi 
-      connection at IP adrress 192.168.0.120) receive buffer were:
-        <p style="font-size:12px">
-        GET /index.html HTTP/1.1
-        Host: 192.168.0.120<br>
-        Connection: keep-alive<br>
-        Cache-Control: max-age=0<br>
+   #### This project sets up a simple tcp socket with enough functionality to serve up a stand-alone .html file (with some java script to handle parsing tcp headers) and handle bi-directional data flow between the esp device and the browser. This repository was tested on a ESP32-S and on a ESP8266 D1-mini with  their respective tools packages and esp-idf frameworks. 
+   #### The tcp server in the esp takes the incoming IP packets combines, windows, verifies/requests retransmission, and notifies us that an http request is ready.  When I filled 192.168.0.120/index.html into my browser address bar window the contents of the tcp server (running over in my esp running a wifi connection at IP adrress 192.168.0.120) receive buffer were:
+```
+GET /index.html HTTP/1.1
+Host: 192.168.0.120<br>
+Connection: keep-alive<br>
+Cache-Control: max-age=0<br>
         Upgrade-Insecure-Requests: 1<br>
         User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 
         (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36<br>
@@ -42,16 +14,9 @@
         image/webp,image/apng,*/*;q=0.8<br>
         Accept-Encoding: gzip, deflate<br>
         Accept-Language: en-US,en;q=0.9,la;q=0.8<br>
-        </p>
-      <p>
-      All my esp parser cares about in the previous packet is that it was a GET 
-      request of the data stored in the index.html file, which is then pointed 
-      at in the tcp server socket send command. The browser magically knows that 
-      data returning from this request will be executed as html (maybe because 
-      it's origin was the browser's address box).
-
-      <p>
-      Any additional files you want to download (such as images, .css or 
+  ```
+   #### All my esp parser cares about in the previous packet is that it was a GET request of the data stored in the index.html file, which is then pointed  at in the tcp server socket send command. The browser magically knows that  data returning from this request will be executed as html (maybe because it's origin was the browser's address box).
+#### Any additional files you want to download (such as images, .css or 
       .js files) will require editting the esp32-website.c (actually tcpsetup.c)
       program tcp_server_task() function for the specific file and
       adding the file to main/component.mk file. In the code just copy the 
