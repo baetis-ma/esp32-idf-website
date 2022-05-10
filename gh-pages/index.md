@@ -1,4 +1,5 @@
 # Simple Web Page
+![testpage](helloworld.png)
 ##### This project sets up a simple tcp socket with enough functionality to serve up a stand-alone .html file (with some java script to handle parsing tcp headers) and handle bi-directional data flow between the esp device and the browser. This repository was tested on a ESP32-S and on a ESP8266 D1-mini with  their respective tools packages and esp-idf frameworks. 
 ##### The tcp server in the esp takes the incoming IP packets combines, windows, verifies/requests retransmission, and notifies us that an http request is ready.  When I filled 192.168.0.120/index.html into my browser address bar window the contents of the tcp server (running over in my esp running a wifi connection at IP adrress 192.168.0.120) receive buffer were:
 ```
@@ -16,7 +17,6 @@ Accept-Language: en-US,en;q=0.9,la;q=0.8<br>
 ```
 ##### All my esp parser cares about in the previous packet is that it was a GET request of the data stored in the index.html file, which is then pointed  at in the tcp server socket send command. The browser magically knows that  data returning from this request will be executed as html (maybe because it's origin was the browser's address box).
 ##### Any additional files you want to download (such as images, .css or .js files) will require editting the esp32-website.c (actually tcpsetup.c) program tcp_server_task() function for the specific file and adding the file to main/component.mk file. In the code just copy the  code block responding to index.html, and replace the codition statement  and the asm tag name pointers in rom.
-![testpage](helloworld.png)
 ##### This project is not very useful in itself but can be used for a framework for more complicated projects.
 ## Setup machine for build
 ##### There are plenty of sites on the web to get you up end running withesp-idf, this is an official `https://docs.espressif.com/projects/esp-idf/en/latest/get-started/` getting started guide</a> that steered me through. A few lines down in the Setup Toolchain area you can pick options for windows, linux or mac os.  Next go to what you want to be your working directory and download repository and setup directory environment depenancies :
