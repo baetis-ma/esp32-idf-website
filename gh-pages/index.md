@@ -25,7 +25,7 @@ git clone https://github.com/baetis-ma/esp32-idf-website</li>
 export PATH="$PATH:$HOME/esp32/xtensa-esp32-elf/bin"</li>
 export IDF_PATH=~/esp32/esp-idf</li>
 ```
-##### or for the esp8266
+##### or for the esp8266 
 ```
 git clone https://github.com/baetis-ma/esp32-idf-website
 export IDF_PATH=~/esp8266/ESP8266_RTOS_SDK
