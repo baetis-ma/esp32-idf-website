@@ -1,6 +1,6 @@
 ## Simple Web Page
 <img align="right" width="45%" height="350" src="helloworld.png"></img>
-##### This project sets up a simple tcp socket with enough functionality to serve up a stand-alone .html file and handle bi-directional data flow between the esp device and the browser. This repository was tested on a ESP32-S and on a ESP8266 D1-mini with their respective tools packages and esp-idf frameworks. T
+##### This project sets up a simple tcp socket with enough functionality to serve up a stand-alone .html file and handle bi-directional data flow between the esp device and the browser.
 ##### The tcp_server_task in the esp takes the incoming IP packets combines, windows, verifies/requests retransmission, and notifies us that an http request is ready. When I filled 192.168.0.122/index.html into my browser address bar window the contents of the tcp server (running over in my esp running a wifi connection at IP adrress 192.168.0.122) receive buffer were:
 ```
 GET /index.html HTTP/1.1
