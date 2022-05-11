@@ -25,16 +25,16 @@ Accept-Language: en-US,en;q=0.9,la;q=0.8<br>
 ##### for the esp32
 ```
 cd <directory in which project will be installed>
-git clone https://github.com/baetis-ma/esp32-idf-website</li>
+git clone https://github.com/baetis-ma/esp32-idf-website
 . ~/esp/esp-idf/export.sh  (read carefully - .sh is sourced)
 ```
 ##### or for the esp8266
 ##### this link is pretty good for esp8266 idf setup https://docs.espressif.com/projects/esp8266-rtos-sdk/en/latest/get-started/index.html
 ```
 cd <directory in which project will be installed>
-git clone https://github.com/baetis-ma/esp32-idf-website</li>
-export IDF_PATH=~/esp8266/ESP8266_RTOS_SDK</li>
-export PATH=$PATH:~/esp8266/xtensa-lx106-elf/bin</li>
+git clone https://github.com/baetis-ma/esp32-idf-website
+export IDF_PATH=~/esp8266/ESP8266_RTOS_SDK
+export PATH=$PATH:~/esp8266/xtensa-lx106-elf/bin
 ```
 ## Notes
 ##### Make sure to either add your user to dialout (permanent) or chmod 666 /dev/ttyUSB0 (for example) if you run into a device permission problem (linux). Also the file main/tcpsetup.c has to be editted to reflect yor own access point credentials (#define EXAMPLE_WIFI_SSID "troutstream" and #define EXAMPLE_WIFI_PASS "password").
