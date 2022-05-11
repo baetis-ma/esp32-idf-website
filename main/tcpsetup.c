@@ -1,12 +1,11 @@
-//this lower level source file contains following functions:
 //  1) initialize_wifi - sets up connection to locl wifi network
 //  2) event_handler   - sets up wifi connection event handler
 //  3) wait_for_ip     - waits for wifi connection
 //  4) tcp_server_task - sets up loop to listen for and handle http requests from client
 //                       current fonfigured for three types of payload headers
 //                       -- GET /index.html or GET/ returns embedded index.html file
-//                       -- GET /(not index.html or blank) returns 404 page
 //                       -- Get /GetData runs function in top level source to return something like data
+//                       -- GET /(none of the above) returns 404 page
 #include <string.h>
 #include <stdio.h>
 #include "freertos/FreeRTOS.h"
@@ -27,7 +26,8 @@
 #define EXAMPLE_WIFI_SSID "troutstream"
 #define EXAMPLE_WIFI_PASS "password"
 #define PORT 80
-
+char glob_ipadr[25];
+char glob_ipadrc[25];
 //need to forward define funtion in top level source
 void GetData(int sock, char *url_responce, int );
 
@@ -47,6 +47,8 @@ static esp_err_t event_handler(void *ctx, system_event_t *event)
     case SYSTEM_EVENT_STA_GOT_IP:
         xEventGroupSetBits(wifi_event_group, IPV4_GOTIP_BIT);
         ESP_LOGI(TAG, "SYSTEM_EVENT_STA_GOT_IP");
+        strcpy(glob_ipadr, ip4addr_ntoa(&event->event_info.got_ip.ip_info.ip));
+        //printf("Got IP: %s\r\n", glob_ipadr);
         break;
     case SYSTEM_EVENT_STA_DISCONNECTED:
         /* This is a workaround as ESP32 WiFi libs don't currently auto-reassociate. */
@@ -74,6 +76,7 @@ void initialize_wifi(void)
         },
     };
     ESP_LOGI(TAG, "Setting WiFi configuration SSID %s...", wifi_config.sta.ssid);
+    printf( "Setting WiFi configuration SSID %s...\n", wifi_config.sta.ssid);
     ESP_ERROR_CHECK( esp_wifi_set_mode(WIFI_MODE_STA) );
     ESP_ERROR_CHECK( esp_wifi_set_config(ESP_IF_WIFI_STA, &wifi_config) );
     ESP_ERROR_CHECK( esp_wifi_start() );
@@ -82,9 +85,10 @@ void initialize_wifi(void)
 void wait_for_ip()
 {
     uint32_t bits = IPV4_GOTIP_BIT;
-    //ESP_LOGI(TAG, "Waiting for AP connection...");
+    ESP_LOGI(TAG, "Waiting for AP connection...");
     xEventGroupWaitBits(wifi_event_group, bits, false, true, portMAX_DELAY);
-    ESP_LOGI(TAG, "Connected to AP");
+    //ESP_LOGI(TAG, "Connected to Network");
+    printf("Connected to Network at %s\n", glob_ipadr);
 }
 
 
@@ -126,8 +130,8 @@ void tcp_server_task(void *pvParameters)
                 //prints client source ip and http request packet to esp monitor
                 inet_ntoa_r(((struct sockaddr_in *)&sourceAddr)->sin_addr.s_addr, addr_str, sizeof(addr_str) - 1);
                 ESP_LOGI("---  ", "Received %d bytes from %s:", len, addr_str);
+                strcpy(glob_ipadrc, addr_str);  //address from client
                 ESP_LOGI("", "HTTP REQUEST Packet\n%s", rx_buffer);
-
                 //parse request type and arg 
                 char http_type[8];
                 char url_resource[64];
@@ -144,7 +148,7 @@ void tcp_server_task(void *pvParameters)
                     strcpy (url_name, temp_str);
                     url_resource[0] = '\0';
                 }
-                //ESP_LOGI("", "request type %s|%s|%s", http_type, url_name, url_resource);
+                //ESP_LOGI("xxxx", "request type %s|%s|%s", http_type, url_name, url_resource);
 
                 //reads file directly from read only data space (saving ram buffer space)
                 //and breaks up file to fit ip buffer size 

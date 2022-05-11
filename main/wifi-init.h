@@ -5,5 +5,3 @@
 void wait_for_ip();
 void initialize_wifi(void);
 void tcp_server_task(void *pvParameters);
-
-
