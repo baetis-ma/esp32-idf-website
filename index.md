@@ -21,7 +21,7 @@ Accept-Language: en-US,en;q=0.9,la;q=0.8<br>
 ##### If neither of the above url_type/url_name conditions are not matched the esp returns a simple 404 page.
 ##### For simple projects where you just want to control a few parameters on a remote esp controlled system having the esp the esp generate the retuen webpage isn't that bad. In some cases it makes sense to add a little javascript to your index.html file; with javascript you needn't send an html file from the esp to the browser, a data packet is sent from the esp which the javascript running on the browser uses to overwrite dom fields anywhere on the bowser display. Another very useful feature is that it is easy to use something link curl commands to send and receive data from the esp, including collecting and storing data. 
 ## Setup machine for build
-##### There are plenty of sites on the web to get you up end running with esp-idf, this is an official `https://docs.espressif.com/projects/esp-idf/en/latest/get-started/` that steered me through. A few lines down in the Setup Toolchain area you can pick options for windows, linux or mac os.  Next go to what you want to be your working directory and download repository and setup directory environment depenancies.
+##### There are plenty of sites on the web to get you up end running with esp-idf, this is an official https://docs.espressif.com/projects/esp-idf/en/latest/get-started/ that steered me through. A few lines down in the Setup Toolchain area you can pick options for windows, linux or mac os.  Next go to what you want to be your working directory and download repository and setup directory environment depenancies.
 ##### for the esp32
 ```
 cd <directory in which project will be installed>
