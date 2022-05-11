@@ -25,21 +25,19 @@ Accept-Language: en-US,en;q=0.9,la;q=0.8<br>
 ##### for the esp32
 ```
 cd <directory in which project will be installed>
-git clone https://github.com/baetis-ma/esp-idf-website
+git clone https://github.com/baetis-ma/esp32-idf-website
 . ~/esp/esp-idf/export.sh  (read carefully - .sh is sourced)
 ```
 ##### or for the esp8266
 ##### this link is pretty good for esp8266 idf setup https://docs.espressif.com/projects/esp8266-rtos-sdk/en/latest/get-started/index.html
 ```
 cd <directory in which project will be installed>
-git clone https://github.com/baetis-ma/esp-idf-website
+git clone https://github.com/baetis-ma/esp32-idf-website
 export IDF_PATH=~/esp8266/ESP8266_RTOS_SDK
 export PATH=$PATH:~/esp8266/xtensa-lx106-elf/bin
 ```
-##### Stay in the esp32-idf-website directory on your compter and type `make menuconfig` (make sure you have exported environment variables above into that terminal's shell).  You can set the tty port and change the download speed here (Serial flaser config) to 921600 baud on the esp32 (esp8266 worked at 115200 baud max). `make flash monitor` will build, download, exectute and monitor the esp. If all went well that's it, if you change some of the code run `make flash monitor' again, the changes made to the code will be compiled, linked and downloaded.
+##### Stay in the esp32-idf-website directory on your compter and type `make menuconfig` (make sure you have exported environment variables above into that terminal's shell).  You can set the tty port and change the download speed here (Serial flaser config) to 921600 baud on the esp32 (esp8266 worked at 115200 baud max). `make flash monitor` will build, download, exectute and monitor the esp. If all went well that's it, if you change some of the code run `make flash monitor' again, the changes made to the code will be compiled, linked and downloaded. 
 ##### First time through it takes a few minutes to build everything, because the rtos operating is being built. When the monitor comes up and the esp boots look the monitor output for the station ip address and type that into a browser address box.  Test out adding /index.html or /getData or /getData?a=hellow+world to the address url (check monitor output in the terminal to see what the contents of the tcp server socket's receive buffer). A path not identified will 404, as does the favicon.ico that the browser likes to add in as an additional http request after the browser address bar request (if you want a favicon.ico add to tcp_server_task and update component.mk with your fav favicom.ico, I suppose).
-## Notes
-##### Make sure to either add your user to dialout (permanent) or chmod 666 /dev/ttyUSB0 (for example) if you run into a device permission problem (linux). Also the file main/tcpsetup.c has to be editted to reflect yor own access point credentials (#define EXAMPLE_WIFI_SSID "troutstream" and #define EXAMPLE_WIFI_PASS "password").
 ## Next Step -
 ##### Another repository, baetis-ma/motortest, has documentation for a project that uses a webpage to control a test of a motor with a propellor. The esp hosts a webpage allowing :
 ```
@@ -51,4 +49,7 @@ export PATH=$PATH:~/esp8266/xtensa-lx106-elf/bin
 - current being used by esc
 - voltage into esc
 ```
-##### Using curl commands in a shell (or perl) script allows programmatic control of motor testing, where the pwm can be adjusted upward slowly and the motor speed, motor power and generated thrust can be saved to a file and studied with gnuplot afterward.                                                                                                                           
+##### Using curl commands in a shell (or perl) script allows programmatic control of motor testing, where the pwm can be adjusted upward slowly and the motor speed, motor power and generated thrust can be saved to a file and studied with gnuplot afterward. 
+## Notes
+##### Make sure to either add your user to dialout (permanent) or chmod 666 /dev/ttyUSB0 (for example) if you run into a device permission problem (linux). Also the file main/website.c has to be editted to reflect yor own access point credentials (#define EXAMPLE_WIFI_SSID "troutstream" and #define EXAMPLE_WIFI_PASS "password").
+##### Tested on on half dozen from ESP01 to ESP32S mdules.
