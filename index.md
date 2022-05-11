@@ -22,16 +22,18 @@ Accept-Language: en-US,en;q=0.9,la;q=0.8<br>
 ##### For simple projects where you just want to control a few parameters on a remote esp controlled system having the esp the esp generate the retuen webpage isn't that bad. In some cases it makes sense to add a little javascript to your index.html file; with javascript you needn't send an html file from the esp to the browser, a data packet is sent from the esp which the javascript running on the browser uses to overwrite dom fields anywhere on the bowser display. Another very useful feature is that it is easy to use something link curl commands to send and receive data from the esp, including collecting and storing data. 
 ## Setup machine for build
 ##### There are plenty of sites on the web to get you up end running with esp-idf, this is an official https://docs.espressif.com/projects/esp-idf/en/latest/get-started/ that steered me through. A few lines down in the Setup Toolchain area you can pick options for windows, linux or mac os.  Next go to what you want to be your working directory and download repository and setup directory environment depenancies.
-##### for the esp32
+##### for the esp32 (if you installed idf directories into into ~/esp like I did)
 ```
 cd <directory in which project will be installed>
 git clone https://github.com/baetis-ma/esp32-idf-website
+cd esp32-idf-website
 . ~/esp/esp-idf/export.sh  (read carefully - .sh is sourced)
 ```
-##### or for the esp8266, this link is pretty good for esp8266 idf setup https://docs.espressif.com/projects/esp8266-rtos-sdk/en/latest/get-started/index.html
+##### or for the esp8266, this link is pretty good for esp8266 idf setup https://docs.espressif.com/projects/esp8266-rtos-sdk/en/latest/get-started/index.html (if you installed idf directorys int ~/esp8266 like I did)
 ```
 cd <directory in which project will be installed>
 git clone https://github.com/baetis-ma/esp32-idf-website
+cd esp32-idf-website
 export IDF_PATH=~/esp8266/ESP8266_RTOS_SDK
 export PATH=$PATH:~/esp8266/xtensa-lx106-elf/bin
 ```
