@@ -110,4 +110,4 @@ export PATH=$PATH:~/esp8266/xtensa-lx106-elf/bin
 ##### Using curl commands in a shell (or perl) script allows programmatic control of motor testing, where the pwm can be adjusted upward slowly and the motor speed, motor power and generated thrust can be saved to a file and studied with gnuplot afterward. 
 ## Notes
 ##### Make sure to either add your user to dialout (permanent) or chmod 666 /dev/ttyUSB0 (for example) if you run into a device permission problem (linux). Also the file main/website.c has to be editted to reflect yor own access point credentials (#define EXAMPLE_WIFI_SSID "troutstream" and #define EXAMPLE_WIFI_PASS "password").
-##### Tested on on half dozen from ESP01 to ESP32S mdules.
+##### Tested on on half dozen from ESP01 to ESP32S modules.
