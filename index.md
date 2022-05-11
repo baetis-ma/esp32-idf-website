@@ -28,8 +28,7 @@ cd <directory in which project will be installed>
 git clone https://github.com/baetis-ma/esp32-idf-website
 . ~/esp/esp-idf/export.sh  (read carefully - .sh is sourced)
 ```
-##### or for the esp8266
-##### this link is pretty good for esp8266 idf setup https://docs.espressif.com/projects/esp8266-rtos-sdk/en/latest/get-started/index.html
+##### or for the esp8266, this link is pretty good for esp8266 idf setup https://docs.espressif.com/projects/esp8266-rtos-sdk/en/latest/get-started/index.html
 ```
 cd <directory in which project will be installed>
 git clone https://github.com/baetis-ma/esp32-idf-website
