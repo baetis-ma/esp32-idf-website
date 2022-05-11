@@ -19,18 +19,6 @@ Accept-Language: en-US,en;q=0.9,la;q=0.8<br>
 ##### The browser request 192.168.0.112/getData?hello+world tcp_server_task extracts url_name = 'getData' and url_resource = 'hello+world'. The top level subroutine getData() is called - which generated a simple web page output to the socket back to the browser. The url_resource string can be parsed to transfer state from the brower to the esp. The esp can respond in the webpage trnsmitting esp state back to the browser. 
 ##### If neither of the above url_type/url_name conditions are not matched the esp returns a simple 404 page.
 ##### For simple projects where you just want to control a few parameters on a remote esp controlled system having the esp the esp generate the retuen webpage isn't that bad. In some cases it makes sense to add a little javascript to your index.html file; with javascript you needn't send an html file from the esp to the browser, a data packet is sent from the esp which the javascript running on the browser uses to overwrite dom fields anywhere on the bowser display. Another very useful feature is that it is easy to use something link curl commands to send and receive data from the esp, including collecting and storing data. 
-## Next Step -
-##### Another repository, baetis-ma/motortest, has documentation for a project that uses a webpage to control a test of a motor with a propellor. The esp hosts a webpage allowing :
-```
-- power relay to the motor on/off
-- frequency of esc pulses
-- pwm pulse width to esc control
-- rotation speed of motor
-- thrust measured by strain guage
-- current being used by esc
-- voltage into esc
-```
-##### Using curl commands in a shell (or perl) script allows programmatic control of motor testing, where the pwm can be adjusted upward slowly and the motor speed, motor power and generated thrust can be saved to a file and studied with gnuplot afterward.
 ## Setup machine for build
 ##### There are plenty of sites on the web to get you up end running with esp-idf, this is an official `https://docs.espressif.com/projects/esp-idf/en/latest/get-started/` that steered me through. A few lines down in the Setup Toolchain area you can pick options for windows, linux or mac os.  Next go to what you want to be your working directory and download repository and setup directory environment depenancies.
 ##### for the esp32
@@ -51,4 +39,15 @@ export PATH=$PATH:~/esp8266/xtensa-lx106-elf/bin</li>
 ##### Make sure to either add your user to dialout (permanent) or chmod 666 /dev/ttyUSB0 (for example) if you run into a device permission problem (linux). Also the file main/tcpsetup.c has to be editted to reflect yor own access point credentials (#define EXAMPLE_WIFI_SSID "troutstream" and #define EXAMPLE_WIFI_PASS "password").
 ##### Move into the esp32-idf-website directory on your compter and type 'make menuconfig' (make sure you have exported environment variables above into that terminal's shell).  You can set the tty port and change the download speed here (Serial flaser config) to 921600 baud on the esp32 (esp8266 worked at 115200 baud max). 'make flash monitor' will build, download, exectute and monitor the esp.
 ##### First time through it takes a few minutes to build everything, because the rtos operating is being built. When the monitor comes up and the esp boots look the monitor output for the station ip address and type that into a browser address box.  Test out adding /index.html or /getData or /getData?a=hellow+world to the address url (check monitor output in the terminal to see what the contents of the tcp server socket's receive buffer)  A path not identified will 404, as does the favicon.ico that the browser likes to add in as an additional http request after the browser address bar request (if you want a favicon.ico add to tcp_server_task and update component.mk with your fav favicom.ico, I suppose).
-~                                                                                                                              
+## Next Step -
+##### Another repository, baetis-ma/motortest, has documentation for a project that uses a webpage to control a test of a motor with a propellor. The esp hosts a webpage allowing :
+```
+- power relay to the motor on/off
+- frequency of esc pulses
+- pwm pulse width to esc control
+- rotation speed of motor
+- thrust measured by strain guage
+- current being used by esc
+- voltage into esc
+```
+##### Using curl commands in a shell (or perl) script allows programmatic control of motor testing, where the pwm can be adjusted upward slowly and the motor speed, motor power and generated thrust can be saved to a file and studied with gnuplot afterward.                                                                                                                           
