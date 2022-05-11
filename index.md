@@ -25,14 +25,14 @@ Accept-Language: en-US,en;q=0.9,la;q=0.8<br>
 ##### for the esp32
 ```
 cd <directory in which project will be installed>
-git clone https://github.com/baetis-ma/esp32-idf-website
+git clone https://github.com/baetis-ma/esp-idf-website
 . ~/esp/esp-idf/export.sh  (read carefully - .sh is sourced)
 ```
 ##### or for the esp8266
 ##### this link is pretty good for esp8266 idf setup https://docs.espressif.com/projects/esp8266-rtos-sdk/en/latest/get-started/index.html
 ```
 cd <directory in which project will be installed>
-git clone https://github.com/baetis-ma/esp32-idf-website
+git clone https://github.com/baetis-ma/esp-idf-website
 export IDF_PATH=~/esp8266/ESP8266_RTOS_SDK
 export PATH=$PATH:~/esp8266/xtensa-lx106-elf/bin
 ```
